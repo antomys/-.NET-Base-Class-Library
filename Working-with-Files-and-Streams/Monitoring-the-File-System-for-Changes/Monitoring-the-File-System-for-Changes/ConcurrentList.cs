@@ -7,19 +7,43 @@ namespace Monitoring_the_File_System_for_Changes
         private readonly IList<T> _list = new List<T>();
         private readonly object _lock = new();
 
-        public void Add(T item)
+        public int Count
         {
-            lock (_lock)
+            get 
             {
-                _list.Add(item);
+                lock(_lock)
+                    return _list?.Count ?? 0;
             }
         }
 
-        public void Remove(T item)
+        public void TryAdd(T item, out bool result)
         {
             lock (_lock)
             {
+                if (!_list.Contains(item))
+                {
+                    _list.Add(item);
+                    result = true;
+                    return;
+                }
+
+                result = false;
+
+            }
+        }
+
+        public void Remove(T item, out bool result)
+        {
+            result = false;
+            lock (_lock)
+            {
+                if (!_list.Contains(item))
+                {
+                    result=false;
+                    return;
+                }
                 _list.Remove(item);
+                result = true;
             }
         }
 
@@ -28,6 +52,15 @@ namespace Monitoring_the_File_System_for_Changes
             lock (_lock)
             {
                 return _list.Contains(item);
+            }
+        }
+
+        public T this[int i]
+        {
+            get
+            {
+                lock(_lock)
+                    return _list != null ? _list[i] : default;
             }
         }
     }

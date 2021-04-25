@@ -18,9 +18,9 @@ namespace Monitoring_the_File_System_for_Changes
                 throw new ArgumentNullException(directoryName);
             using var fileSystemWatcher = new FileSystemWatcher(directoryName)
             {
-                IncludeSubdirectories = true, 
+                IncludeSubdirectories = false, 
                 Filter = "*.*",
-                NotifyFilter = NotifyFilters.FileName,
+                NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastWrite,
                 // Without this it will not generate events. By default - false.
                 EnableRaisingEvents = true
             };
@@ -38,7 +38,7 @@ namespace Monitoring_the_File_System_for_Changes
             fileSystemWatcher.Renamed += FileSystemWatcherExtension.FileSystemWatcherOnRenamed;
             fileSystemWatcher.Error += FileSystemWatcherExtension.FileSystemWatcherOnError;
             fileSystemWatcher.Disposed += FileSystemWatcherExtension.FileSystemWatcherOnDisposed;
+            fileSystemWatcher.Changed += FileSystemWatcherExtension.FileSystemWatcherOnChanged;
         }
-        
     }
 }

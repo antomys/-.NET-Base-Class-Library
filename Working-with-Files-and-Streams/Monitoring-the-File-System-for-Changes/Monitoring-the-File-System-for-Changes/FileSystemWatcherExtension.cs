@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.IO;
 
 namespace Monitoring_the_File_System_for_Changes
@@ -20,7 +19,9 @@ namespace Monitoring_the_File_System_for_Changes
 
         internal static void FileSystemWatcherOnRenamed(object sender, RenamedEventArgs e)
         {
+            e.TryFlush();
             Console.WriteLine($"[{DateTime.Now}]: Renamed file {e.OldName} to {e.Name}");
+            e.FullPath.Process();
         }
 
         internal static void FileSystemWatcherOnDeleted(object sender, FileSystemEventArgs e)
@@ -30,6 +31,7 @@ namespace Monitoring_the_File_System_for_Changes
 
         internal static void FileSystemWatcherOnCreated(object sender, FileSystemEventArgs e)
         {
+            e.TryFlush();
             Console.WriteLine($"[{DateTime.Now}]: Created file {e.Name} in {e.FullPath}");
             e.FullPath.Process();
         }
@@ -37,12 +39,35 @@ namespace Monitoring_the_File_System_for_Changes
         private static void Process(this string fullPath)
         {
             var fileName = Path.GetFileName(fullPath);
+            
+            if (File.GetAttributes(fullPath).HasFlag(FileAttributes.Directory))
+                return;
+            
             if (string.IsNullOrEmpty(fullPath))
                 throw new ArgumentNullException(fullPath);
+            
+            for(var i =0; i< BagOfFileNames.Count; i++)
+                if(fileName.Contains(Path.GetFileNameWithoutExtension(BagOfFileNames[i]) ?? throw new InvalidOperationException()))
+                    return;
             if (BagOfFileNames.Contains(fileName)) return;
-            BagOfFileNames.Add(fileName);
+            
+            BagOfFileNames.TryAdd(fileName, out var result);
+            if(result is false) return;
+           
             var processFile = new FileProcessor(fullPath);
             processFile.ProcessFile();
+        }
+
+        internal static void FileSystemWatcherOnChanged(object sender, FileSystemEventArgs e)
+        {
+            Console.WriteLine($"[{DateTime.Now}]: Changed file {e.Name}");
+            e.FullPath.Process();
+        }
+
+        private static void TryFlush(this FileSystemEventArgs e)
+        {
+            if(BagOfFileNames.Contains(e.Name))
+                BagOfFileNames.Remove(e.Name, out _);
         }
     }
 }

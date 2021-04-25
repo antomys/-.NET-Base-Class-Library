@@ -74,12 +74,14 @@ namespace Monitoring_the_File_System_for_Changes
             if (!Directory.Exists(completedDirectory))
                 Directory.CreateDirectory(completedDirectory);
             
-            completedDirectory = Path.Combine(completedDirectory, fileName);
+            //completedDirectory = Path.Combine(completedDirectory, fileName);
             
-            if (File.Exists(processDirectory) && !File.Exists(completedDirectory))
+            if (File.Exists(processDirectory) && !File.Exists(Path.Combine(completedDirectory,fileName)))
             {
                 Console.WriteLine($"Moving file {fileName} from {InProcessDirectory} to {CompleteDirectory}");
-                File.Move(processDirectory, completedDirectory);
+                
+                File.Move(processDirectory, Path.Combine(completedDirectory,
+                    Path.GetFileNameWithoutExtension(fileName) + '-' + Guid.NewGuid() + fileExtension));
             }
             
             Console.WriteLine($"File: {InternalFileName} exists, yay!");
