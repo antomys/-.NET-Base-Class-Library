@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace DataProcessor
@@ -14,10 +15,8 @@ namespace DataProcessor
         private string InternalDirectoryName { get;}
         public FileProcessor(string internalFileName, string internalDirectoryName = null)
         {
-            if (!File.Exists(internalFileName))
-                throw new ArgumentNullException(nameof(internalFileName));
             InternalDirectoryName = internalDirectoryName;
-            InternalFileName = internalFileName;
+            InternalFileName = internalFileName ?? throw new ArgumentNullException(nameof(internalFileName));
         }
         public void ProcessFile()
         {
@@ -88,8 +87,21 @@ namespace DataProcessor
         public void ProcessDirectory()
         {
             Console.WriteLine($"Beginning processing file {InternalDirectoryName} with types {InternalFileName}!");
-            
-            
+            var files = InternalFileName.ToLower() switch
+            {
+                "text" => Directory.GetFiles(InternalDirectoryName, "*.txt"),
+                _ => Directory.GetFiles(InternalDirectoryName)
+            };
+            Console.WriteLine("Found files: ");
+            PrintArray(files);
+        }
+
+        private static void PrintArray(IEnumerable<string> array)
+        {
+            foreach (var item in array)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }

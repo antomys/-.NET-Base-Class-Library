@@ -19,8 +19,8 @@ namespace DataProcessor
                 }
                 case "--dir":
                 {
-                    Console.WriteLine($"Chosen command is {args[0]},"
-                    + "directory is {args[1]}, fileType is {args[2]}");
+                    Console.WriteLine($"Chosen command is {args[0]}," 
+                                      +$"directory is {args[1]}, fileType is {args[2]}");
                     ProcessDirectory(args[1],args[2]);
                     break;
                 }
