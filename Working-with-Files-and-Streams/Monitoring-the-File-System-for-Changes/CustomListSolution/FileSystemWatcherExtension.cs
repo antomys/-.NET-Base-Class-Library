@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
+using Monitoring_the_File_System_for_Changes;
 
-namespace Monitoring_the_File_System_for_Changes
+namespace CustomListSolution
 {
     internal static class FileSystemWatcherExtension
     {

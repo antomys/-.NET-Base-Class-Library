@@ -1,9 +1,8 @@
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Monitoring_the_File_System_for_Changes
+namespace CustomListSolution
 {
     internal class FileProcessor
     {

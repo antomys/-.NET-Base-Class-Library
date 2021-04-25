@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Monitoring_the_File_System_for_Changes
+namespace CustomListSolution
 {
     internal static class Program
     {

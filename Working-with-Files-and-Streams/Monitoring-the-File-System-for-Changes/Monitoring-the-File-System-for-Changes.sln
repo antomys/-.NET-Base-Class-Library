@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitoring-the-File-System-for-Changes", "Monitoring-the-File-System-for-Changes\Monitoring-the-File-System-for-Changes.csproj", "{1C1E2C5F-FADC-4F09-A5C2-3861D83E3194}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomListSolution", "CustomListSolution\CustomListSolution.csproj", "{1C1E2C5F-FADC-4F09-A5C2-3861D83E3194}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryCacheSolution", "MemoryCacheSolution\MemoryCacheSolution.csproj", "{9D5DD64C-D395-45A4-87E2-44CC8FFF5033}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +14,9 @@ Global
 		{1C1E2C5F-FADC-4F09-A5C2-3861D83E3194}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C1E2C5F-FADC-4F09-A5C2-3861D83E3194}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C1E2C5F-FADC-4F09-A5C2-3861D83E3194}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D5DD64C-D395-45A4-87E2-44CC8FFF5033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D5DD64C-D395-45A4-87E2-44CC8FFF5033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D5DD64C-D395-45A4-87E2-44CC8FFF5033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D5DD64C-D395-45A4-87E2-44CC8FFF5033}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
