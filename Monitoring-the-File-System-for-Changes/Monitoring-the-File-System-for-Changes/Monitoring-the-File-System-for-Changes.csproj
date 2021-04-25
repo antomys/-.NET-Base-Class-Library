@@ -1,9 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <TargetFramework>net5.0</TargetFramework>
-        <RootNamespace>Monitoring_the_File_System_for_Changes</RootNamespace>
-    </PropertyGroup>
-
-</Project>
