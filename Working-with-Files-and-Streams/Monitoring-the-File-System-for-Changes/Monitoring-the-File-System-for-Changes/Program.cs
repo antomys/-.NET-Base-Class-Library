@@ -20,9 +20,7 @@ namespace Monitoring_the_File_System_for_Changes
             {
                 IncludeSubdirectories = true, 
                 Filter = "*.*",
-                NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite
-                                                        | NotifyFilters.FileName
-                                                        | NotifyFilters.CreationTime,
+                NotifyFilter = NotifyFilters.FileName,
                 // Without this it will not generate events. By default - false.
                 EnableRaisingEvents = true
             };
@@ -42,17 +40,5 @@ namespace Monitoring_the_File_System_for_Changes
             fileSystemWatcher.Disposed += FileSystemWatcherExtension.FileSystemWatcherOnDisposed;
         }
         
-        [Obsolete("Removed due to fileSystemWatcher")]
-        private static void ProcessFile(string fileName)
-        {
-            var processor = new FileProcessor(fileName);
-            processor.ProcessFile();
-        }
-        [Obsolete("Removed due to fileSystemWatcher")]
-        private static void ProcessDirectory(string directoryName, string fileType)
-        {
-            var processor = new FileProcessor(fileType,directoryName);
-            processor.ProcessDirectory();
-        }
     }
 }
