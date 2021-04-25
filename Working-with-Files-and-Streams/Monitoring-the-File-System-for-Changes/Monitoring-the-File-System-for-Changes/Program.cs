@@ -9,19 +9,27 @@ namespace Monitoring_the_File_System_for_Changes
         {
             if(args.Length == 0)
                 return;
-            var directoryName = args[0];
+            args[0].Init();
+        }
+
+        private static void Init(this string directoryName)
+        {
             if (!Directory.Exists(directoryName))
                 throw new ArgumentNullException(directoryName);
             using var fileSystemWatcher = new FileSystemWatcher(directoryName)
             {
                 IncludeSubdirectories = true, 
                 Filter = "*.*",
-                NotifyFilter = NotifyFilters.FileName,
+                NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite
+                                                        | NotifyFilters.FileName
+                                                        | NotifyFilters.CreationTime,
+                // Without this it will not generate events. By default - false.
+                EnableRaisingEvents = true
             };
 
             fileSystemWatcher.InitializeMethods();
-
-            Console.WriteLine("Press any key to exit.");
+            
+            Console.WriteLine("Beginning to watch\nPress any key to exit.");
             Console.ReadKey();
         }
 
