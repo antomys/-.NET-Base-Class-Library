@@ -6,4 +6,8 @@
         <RootNamespace>Reading_and_Writing_Data_Incrementally_Using_Streams</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="System.Runtime.Caching" Version="5.0.0" />
+    </ItemGroup>
+
 </Project>
