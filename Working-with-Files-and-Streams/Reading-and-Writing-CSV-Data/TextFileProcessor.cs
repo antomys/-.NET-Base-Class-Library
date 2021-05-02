@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
 using CsvHelper;
@@ -82,30 +81,24 @@ namespace Reading_and_Writing_CSV_Data
 
         public async Task ProcessCsvFile()
         {
-            await Task.Run(() =>
+            using (var inputFile = File.OpenText(InputFileName))
             {
-                using (var inputFile = File.OpenText(InputFileName))
+                var config = new CsvConfiguration(CultureInfo.InvariantCulture)
                 {
+                    TrimOptions = TrimOptions.Trim,
+                    //Delimiter = ";", // or ,
+                    Comment = '@', // Default is #
+                    AllowComments = true,
+                    //HasHeaderRecord = false
+                };
+                using var csvReader = new CsvReader(inputFile,config);
+                var records = csvReader.GetRecordsAsync<dynamic>();
                 
-                    using var csvReader = new CsvReader(inputFile,
-                        new CsvConfiguration(CultureInfo.InvariantCulture)
-                        {
-                            TrimOptions = TrimOptions.Trim,
-                            Comment = '@',
-                            AllowComments = true
-                        } );
+                await using var csvWriter = new CsvWriter(new StreamWriter(OutputFileName), config);
+                await csvWriter.WriteRecordsAsync(records);
 
-                    var records = csvReader.GetRecords<dynamic>();
-                    foreach (var record in records)
-                    {
-                        Console.WriteLine(record.OrderNumber);
-                        Console.WriteLine(record.CustomerNumber);
-                        Console.WriteLine(record.Description);
-                        Console.WriteLine(record.Quantity);
-                    }
-                }
-                File.Delete(InputFileName);
-            });
+            }
+            File.Delete(InputFileName);
         }
     }
 }
