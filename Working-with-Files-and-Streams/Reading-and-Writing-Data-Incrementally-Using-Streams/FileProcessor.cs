@@ -66,9 +66,9 @@ namespace Reading_and_Writing_Data_Incrementally_Using_Streams
             switch (fileExtension)
             {
                 case ".txt":
-                    await processor.ProcessAsStringArrays();
+                    await processor.ProcessFileStreamLines();
                     break;
-                default: await processor.ProcessAsByteArray();
+                default: await processor.ProcessByteFileStream();
                     break;
             }
             Console.WriteLine($"File: {InternalFileName} exists, yay!");
