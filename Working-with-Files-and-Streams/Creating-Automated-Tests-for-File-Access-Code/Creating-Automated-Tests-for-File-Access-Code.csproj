@@ -1,9 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <TargetFramework>net5.0</TargetFramework>
-        <RootNamespace>Creating_Automated_Tests_for_File_Access_Code</RootNamespace>
-    </PropertyGroup>
-
-</Project>

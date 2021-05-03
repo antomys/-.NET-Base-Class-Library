@@ -1,26 +1,34 @@
 ﻿using System.IO;
+using System.IO.Abstractions;
 using System.Threading.Tasks;
 
-namespace Reading_and_Writing_Data_Incrementally_Using_Streams
+namespace DataProcessor
 {
     public class TextFileProcessor
     {
+        private readonly IFileSystem _fileSystem;
         private string InputFileName { get; }
         private string OutputFileName { get; }
 
         public TextFileProcessor(string inputFileName, string outputFileName)
+        :this(inputFileName,outputFileName,new FileSystem())
+        {
+            
+        }
+
+        public TextFileProcessor(string inputFileName, string outputFileName, IFileSystem fileSystem)
         {
             InputFileName = inputFileName;
             OutputFileName = outputFileName;
+            _fileSystem = fileSystem;
         }
         
         public async Task ProcessFileStream()
         {
-            await using (var inputFileStream = new FileStream(InputFileName, FileMode.Open))
+            
+            using (var streamReader = _fileSystem.File.OpenText(InputFileName))
             {
-                using var streamReader = new StreamReader(inputFileStream);
-                await using var outputFileStream = new FileStream(OutputFileName, FileMode.Create);
-                await using var streamWriter = new StreamWriter(outputFileStream);
+                await using var streamWriter = _fileSystem.File.CreateText(OutputFileName);
 
                 var content = await streamReader.ReadToEndAsync();
                 await streamWriter.WriteAsync(content.ToUpper());
@@ -31,11 +39,9 @@ namespace Reading_and_Writing_Data_Incrementally_Using_Streams
         
         public async Task ProcessFileStreamLines()
         {
-            await using (var inputFileStream = new FileStream(InputFileName, FileMode.Open))
+            using (var streamReader = _fileSystem.File.OpenText(InputFileName))
             {
-                using var streamReader = new StreamReader(inputFileStream);
-                await using var outputFileStream = new FileStream(OutputFileName, FileMode.Create);
-                await using var streamWriter = new StreamWriter(outputFileStream);
+                await using var streamWriter = _fileSystem.File.CreateText(OutputFileName);
             
                 var initialLine = 0;
                 while (!streamReader.EndOfStream)
@@ -57,9 +63,9 @@ namespace Reading_and_Writing_Data_Incrementally_Using_Streams
 
         public async Task ProcessByteFileStream()
         {
-            await using (var inputFileStream = File.Open(InputFileName, FileMode.Open, FileAccess.Read))
+            await using (var inputFileStream = _fileSystem.File.Open(InputFileName, FileMode.Open, FileAccess.Read))
             {
-                await using var outputFileStream = File.Create(OutputFileName);
+                await using var outputFileStream = _fileSystem.File.Create(OutputFileName);
 
                 const int endOfStream = -1;
                 var largest = 0;
