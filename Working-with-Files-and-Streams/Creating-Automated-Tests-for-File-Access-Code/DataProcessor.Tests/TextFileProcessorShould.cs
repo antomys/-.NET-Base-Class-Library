@@ -1,5 +1,5 @@
 using System.IO.Abstractions.TestingHelpers;
-using System.Linq;
+using ApprovalTests.Reporters;
 using Xunit;
 
 namespace DataProcessor.Tests
@@ -7,6 +7,7 @@ namespace DataProcessor.Tests
     public class TextFileProcessorShould
     {
         [Fact]
+        [UseReporter(typeof(DiffReporter))]
         public void MakeOddUppercase()
         {
             // Arrange
@@ -35,6 +36,7 @@ namespace DataProcessor.Tests
         }
         
         [Fact]
+        [UseReporter(typeof(DiffReporter))]
         public void ReverseByte()
         {
             // Arrange
