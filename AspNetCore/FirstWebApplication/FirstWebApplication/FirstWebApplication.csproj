@@ -7,4 +7,8 @@
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\FirstWebApplication.Dal\FirstWebApplication.Dal.csproj" />
+    </ItemGroup>
+
 </Project>

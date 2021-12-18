@@ -1,0 +1,29 @@
+@page
+@model FirstWebApplication.Pages.Restaurants.List
+
+@{
+    ViewData["Title"] = "Restaurant List";
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+<div>
+    <h1>@Model.Message</h1>
+</div>
+<table class="table">
+    @foreach (var restaurant in Model.Restaurants)
+    {
+        <tr>
+            <td>@restaurant.Name</td>
+            <td>@restaurant.Location</td>
+            <td>@Enum.GetName(restaurant.Cuisine)</td>
+        </tr>
+    }
+</table>
+</body>
+</html>

@@ -1,6 +1,9 @@
+using FirstWebApplication.Dal;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<IRestaurantService, InMemoryRestaurantService>();
 
 var app = builder.Build();
 
