@@ -2,6 +2,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExploringCSharpBuildingBlocks", "ExploringCSharpBuildingBlocks\ExploringCSharpBuildingBlocks.csproj", "{68010079-314C-4F29-8E78-FB337F51CDC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblingCSharpProgram", "AssemblingCSharpProgram\AssemblingCSharpProgram.csproj", "{35278B5A-2032-49DE-B995-41B0D340CA69}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AssemblingCSharpProgram", "AssemblingCSharpProgram", "{0BED541D-3EFA-439B-9006-43325F8926AF}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "WeatherUtilities", "AssemblingCSharpProgram\WeatherUtilities\WeatherUtilities.fsproj", "{14D7AC15-F15E-42DE-861E-05C424FB6CB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +18,17 @@ Global
 		{68010079-314C-4F29-8E78-FB337F51CDC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68010079-314C-4F29-8E78-FB337F51CDC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68010079-314C-4F29-8E78-FB337F51CDC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35278B5A-2032-49DE-B995-41B0D340CA69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35278B5A-2032-49DE-B995-41B0D340CA69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35278B5A-2032-49DE-B995-41B0D340CA69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35278B5A-2032-49DE-B995-41B0D340CA69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14D7AC15-F15E-42DE-861E-05C424FB6CB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14D7AC15-F15E-42DE-861E-05C424FB6CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14D7AC15-F15E-42DE-861E-05C424FB6CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14D7AC15-F15E-42DE-861E-05C424FB6CB1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{35278B5A-2032-49DE-B995-41B0D340CA69} = {0BED541D-3EFA-439B-9006-43325F8926AF}
+		{14D7AC15-F15E-42DE-861E-05C424FB6CB1} = {0BED541D-3EFA-439B-9006-43325F8926AF}
 	EndGlobalSection
 EndGlobal
