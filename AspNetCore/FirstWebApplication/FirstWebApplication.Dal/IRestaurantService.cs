@@ -5,5 +5,5 @@ namespace FirstWebApplication.Dal;
 public interface IRestaurantService
 {
     IEnumerable<Restaurant> GetRestaurants();
-    Restaurant? GetRestaurant(Func<Restaurant, bool> selector);
+    IEnumerable<Restaurant> GetRestaurant(Func<Restaurant, bool> selector);
 }

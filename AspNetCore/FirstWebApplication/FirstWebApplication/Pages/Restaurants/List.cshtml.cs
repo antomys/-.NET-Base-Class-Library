@@ -1,5 +1,6 @@
 using FirstWebApplication.Dal;
 using FirstWebApplication.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace FirstWebApplication.Pages.Restaurants;
@@ -17,11 +18,16 @@ public class List : PageModel
                              ?? throw new ArgumentNullException(nameof(restaurantService));
     }
 
-    public string Message { get; set; }
-    public IEnumerable<Restaurant> Restaurants { get; private set; }
+    public string Message { get; set; } = string.Empty;
+    
+    [BindProperty(SupportsGet = true)]
+    public string SearchTerm { get; set; } = default!;
+    public IEnumerable<Restaurant> Restaurants { get; private set; } = default!;
     public void OnGet()
     {
         Message = _configuration[nameof(Message)];
-        Restaurants = _restaurantService.GetRestaurants();
+        Restaurants = string.IsNullOrWhiteSpace(SearchTerm)
+        ? _restaurantService.GetRestaurants()
+        :_restaurantService.GetRestaurant(x=> x.Name.Contains(SearchTerm, StringComparison.InvariantCultureIgnoreCase));
     }
 }

@@ -1,0 +1,33 @@
+@page "{restaurantId:int}"
+@model FirstWebApplication.Pages.Restaurants.Details
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+<h2>
+    Name : @Model.Restaurant?.Name
+</h2>
+<div>
+    Id : @Model.Restaurant?.Id.ToString()
+</div>
+<div>
+    Location : @Model.Restaurant?.Location
+</div>
+@if (Model.Restaurant?.Cuisine is not null)
+{
+    <div>
+        Cuisine :  @Enum.GetName(Model.Restaurant.Cuisine)
+    </div>
+}
+
+<a asp-page="./List" class="btn btn-secondary">All Restaurants</a>
+</body>
+</html>

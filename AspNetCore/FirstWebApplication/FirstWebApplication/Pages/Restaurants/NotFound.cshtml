@@ -1,0 +1,20 @@
+@page
+
+@{
+    Layout = "Shared/_Layout";
+    ViewData["Title"] = "Not Found";
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title> @ViewData["Title"]</title>
+</head>
+<body>
+<div>
+    <h2>Your restaurant was not found</h2>
+</div>
+<a asp-page="./List" class="btn btn-primary"> See All</a>
+</body>
+</html>

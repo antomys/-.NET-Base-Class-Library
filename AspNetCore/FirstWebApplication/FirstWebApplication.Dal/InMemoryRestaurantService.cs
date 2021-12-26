@@ -30,8 +30,8 @@ public class InMemoryRestaurantService : IRestaurantService
         return _restaurants.OrderBy(x=>x.Name);
     }
 
-    public Restaurant? GetRestaurant(Func<Restaurant, bool> selector)
+    public IEnumerable<Restaurant> GetRestaurant(Func<Restaurant, bool> selector)
     {
-        return _restaurants.FirstOrDefault(selector);
+        return _restaurants.Where(selector);
     }
 }
