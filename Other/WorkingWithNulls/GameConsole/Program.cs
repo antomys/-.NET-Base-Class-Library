@@ -10,7 +10,7 @@ var sam = new PlayerCharacter(new DiamondSkinDefence())
 
 var john = new PlayerCharacter(new IronBonesDefence())
 {
-    Name = "john"
+    Name = null
 };
 
 var defect = new PlayerCharacter(new NullDefence())

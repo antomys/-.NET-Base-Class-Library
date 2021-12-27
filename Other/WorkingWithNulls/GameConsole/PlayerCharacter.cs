@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace GameConsole;
 
 public class PlayerCharacter
@@ -9,7 +11,9 @@ public class PlayerCharacter
         _specialDefence = specialDefence
             ?? throw new ArgumentNullException(nameof(specialDefence));
     }
-    public string? Name { get; set; }
+    
+    [AllowNull]
+    public string Name { get; init; }
     
     public int? DaysSinceLastLogin { get; set; }
     
