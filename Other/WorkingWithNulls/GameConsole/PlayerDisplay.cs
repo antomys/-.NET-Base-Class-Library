@@ -1,3 +1,5 @@
+using GameConsole.SpecialDefence;
+
 namespace GameConsole;
 
 internal static class PlayerDisplay

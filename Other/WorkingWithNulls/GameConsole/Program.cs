@@ -1,7 +1,23 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using GameConsole;
+using GameConsole.SpecialDefence;
 
-var player = new PlayerCharacter();
+var sam = new PlayerCharacter(new DiamondSkinDefence())
+{
+    Name = "Sam"
+};
 
-PlayerDisplay.Write(player);
+var john = new PlayerCharacter(new IronBonesDefence())
+{
+    Name = "john"
+};
+
+var defect = new PlayerCharacter(new NullDefence())
+{
+    Name = "defect"
+};
+
+sam.Hit(10);
+john.Hit(14);
+defect.Hit(10);
