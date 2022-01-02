@@ -1,28 +1,30 @@
 namespace ControllingProgramFlow.Core;
 
-public static class Q1Results
+public class Q1Results
 {
     // Aggregate ratings
-    public static double ServiceScore { get; set; } = 8.0;
+    public double ServiceScore { get; set; } = 8.0;
 
-    public static double CoffeeScore { get; set; } = 8.5;
+    public double CoffeeScore { get; set; } = 8.5;
 
-    public static double PriceScore { get; set; } = 6.0;
+    public double PriceScore { get; set; } = 6.0;
 
-    public static double FoodScore { get; set; } = 7.5;
+    public double FoodScore { get; set; } = 7.5;
         
-    public static double OverallRatings() => (ServiceScore + CoffeeScore + PriceScore + FoodScore) / 4d;
+    public double OverallRatings() => (ServiceScore + CoffeeScore + PriceScore + FoodScore) / 4d;
 
-    public static double WouldRecommend { get; set; } = 6.5;
+    public double WouldRecommend { get; set; } = 6.5;
 
-    public static string FavoriteProduct { get; set; } = "Cappuccino";
+    public string FavoriteProduct { get; set; } = "Cappuccino";
 
-    public static string LeastFavoriteProduct { get; set; } = "Granola";
+    public string LeastFavoriteProduct { get; set; } = "Granola";
 
     // Aggregate counts
-    public static double NumberSurveyed { get; set; } = 500;
+    public double NumberSurveyed { get; set; } = 500;
 
-    public static double NumberResponded { get; set; } = 325;
+    public double NumberResponded { get; set; } = 325;
 
-    public static double NumberRewardsMembers { get; set; } = 130;
+    public double NumberRewardsMembers { get; set; } = 130;
+
+    public string Comment { get; set; } = string.Empty;
 }

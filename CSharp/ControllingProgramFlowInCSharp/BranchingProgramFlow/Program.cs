@@ -1,16 +1,18 @@
-﻿using ControllingProgramFlow.Core;
+﻿using BranchingProgramFlow;
+using ControllingProgramFlow.Core;
 
 var tasks = new List<string>();
+var result = new Q1Results();
 // Expression statements
-var responseRate = Q1Results.NumberResponded / Q1Results.NumberSurveyed * 100;
-var unansweredCount = Q1Results.NumberSurveyed - Q1Results.NumberResponded;
+var responseRate = result.NumberResponded / result.NumberSurveyed * 100;
+var _ = result.NumberSurveyed - result.NumberResponded;
 
-if (Q1Results.CoffeeScore < Q1Results.FoodScore)
+if (result.CoffeeScore < result.FoodScore)
 {
     tasks.Add("Investigate coffee recipes and ingredients.");
 }
 
-tasks.Add(Q1Results.OverallRatings() > 8f 
+tasks.Add(result.OverallRatings() > 8f 
     ? "Work with leadership" 
     : "Work with employees");
 
@@ -26,3 +28,10 @@ switch (responseRate)
         tasks.Add("All cool! Discount coupon");
         break;
 }
+
+tasks.ForEach(Console.WriteLine);
+
+var responses = new ForLoop();
+responses.PrintResponseForLoop();
+responses.PrintResponseForeach();
+responses.PrintResponseLinq();
