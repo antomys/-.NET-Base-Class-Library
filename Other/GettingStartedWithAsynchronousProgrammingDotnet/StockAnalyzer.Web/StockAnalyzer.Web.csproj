@@ -6,4 +6,18 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\StockAnalyzer.Core\StockAnalyzer.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="CompanyData.csv" />
+      <Content Include="CompanyData.csv">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Update="StockPrices_Small.csv">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

@@ -9,9 +9,9 @@ public class DataCache
     private static Dictionary<string, IEnumerable<StockPrice>> _stocks = new();
     private string BasePath { get; }
 
-    public DataCache(string basePath)
+    public DataCache(string basePath = "")
     {
-        BasePath = basePath;
+        BasePath = string.IsNullOrEmpty(basePath) ? Directory.GetCurrentDirectory() : basePath;
     }
 
     public async Task<Dictionary<string, IEnumerable<StockPrice>>> LoadStocks()

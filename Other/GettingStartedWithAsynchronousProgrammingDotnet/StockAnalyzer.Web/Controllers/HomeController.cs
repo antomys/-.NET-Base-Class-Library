@@ -1,31 +1,34 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using StockAnalyzer.Web.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using StockAnalyzer.Core;
 
 namespace StockAnalyzer.Web.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    public async Task<IActionResult> Index()
     {
-        _logger = logger;
-    }
+        // Let's make sure that we can load the files when you start the project!
+        var store = new DataCache();
 
-    public IActionResult Index()
-    {
+        await store.LoadStocks();
+
         return View();
     }
 
-    public IActionResult Privacy()
+    [Route("Stock/{ticker}")]
+    public async Task<IActionResult> Stock(string ticker)
     {
-        return View();
-    }
+        if (string.IsNullOrEmpty(ticker))
+        {
+            ticker = "MSFT";
+        }
+        
+        ViewBag.Title = $"Stock Details for {ticker}";
+        
+        var store = new DataCache();
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+        var data = await store.LoadStocks();
+
+        return View(data[ticker]);
     }
 }

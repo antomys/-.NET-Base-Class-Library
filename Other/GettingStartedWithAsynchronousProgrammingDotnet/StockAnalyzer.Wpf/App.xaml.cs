@@ -21,11 +21,12 @@ namespace StockAnalyzer.Wpf
             using var client = new HttpClient();
             try
             {
-                var response = await client.GetAsync("http://localhost:61363");
+                var _ = await client.GetAsync("http://localhost:7168");
+                MessageBox.Show("Connected to 7168!", "Hell yeah!", MessageBoxButton.OK);
             }
             catch (Exception)
             {
-                MessageBox.Show("Ensure that StockAnalyzer.Web is running, expecting to be running on http://localhost:61363. You can configure the solution to start two projects by right clicking the StockAnalyzer solution in Visual Studio, select properties and then Mutliuple Startup Projects.", "StockAnalyzer.Web IS NOT RUNNING");
+                MessageBox.Show("Ensure that StockAnalyzer.Web is running, expecting to be running on https://localhost:7168. You can configure the solution to start two projects by right clicking the StockAnalyzer solution in Visual Studio, select properties and then multiple Startup Projects.", "StockAnalyzer.Web IS NOT RUNNING");
             }
         }
     }
