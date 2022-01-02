@@ -13,6 +13,7 @@ namespace StockAnalyzer.Wpf.Services
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
+        
         public static async Task<IEnumerable<StockPrice>?> GetStockPricesFor(string ticker)
         {
             using var client = new HttpClient();

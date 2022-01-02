@@ -1,7 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-
-using WiredBrainCoffeeSurveys.Reports;
+﻿using ControllingProgramFlow.Core;
 
 // Expression statements
 var responseRate = Q1Results.NumberResponded / Q1Results.NumberSurveyed;
