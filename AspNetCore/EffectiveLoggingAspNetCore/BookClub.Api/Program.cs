@@ -13,6 +13,11 @@ builder.Services
         options.Filters.Add(typeof(TrackActionPerformanceFilter));
     });
 
+builder.Services.AddLogging(options =>
+{
+    options.AddSeq(builder.Configuration.GetSection("Seq"));
+});
+
 builder.Services
     .AddDatabase(builder.Configuration)
     .ConfigureServices()
