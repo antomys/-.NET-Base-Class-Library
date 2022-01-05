@@ -1,8 +1,6 @@
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
+using BookClub.Infrastructure.Filters;
+using NuGet.Packaging;
 
 namespace BookClub.Ui.Extensions;
 
@@ -54,6 +52,7 @@ public static class ServiceCollectionExtensions
         serviceCollection.AddRazorPages();
         serviceCollection.AddControllers(config =>
         {
+            config.Filters.Add(typeof(TrackPagePerformanceFilter));
             /*var policy = new AuthorizationPolicyBuilder()
                 .RequireAuthenticatedUser()
                 .Build();

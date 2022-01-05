@@ -19,6 +19,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\BookClub.Dal\BookClub.Dal.csproj" />
+        <ProjectReference Include="..\BookClub.Infrastructure\BookClub.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>

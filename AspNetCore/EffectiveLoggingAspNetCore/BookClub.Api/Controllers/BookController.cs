@@ -1,8 +1,10 @@
 using BookClub.Dal;
+using BookClub.Infrastructure.Attributes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookClub.Api.Controllers;
 
+[TypeFilter(typeof(TrackPerformance))]
 [Route("api/[controller]")]
 [ApiController]
 public class BookController : ControllerBase
@@ -17,6 +19,7 @@ public class BookController : ControllerBase
     [HttpGet]
     public IEnumerable<Book> GetBooks()
     {
+        //throw new InvalidDataException("Some exceptions for you");
         return _bookRepo.GetAllBooks();
         //return _bookRepo.GetAllBooksThrowError();
     }

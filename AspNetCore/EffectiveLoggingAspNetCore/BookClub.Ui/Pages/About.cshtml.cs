@@ -6,7 +6,7 @@ namespace BookClub.UI.Pages
     {
         public void OnGet()
         {
-
+            throw new Exception("User should not see this");
         }
     }
 }

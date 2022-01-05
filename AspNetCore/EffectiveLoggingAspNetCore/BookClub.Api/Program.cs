@@ -1,20 +1,23 @@
+using BookClub.API.ExceptionMiddleware;
 using BookClub.API.Extensions;
 using BookClub.Dal;
+using BookClub.Infrastructure.ExceptionMiddleware;
+using BookClub.Infrastructure.Filters;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services
-    .AddControllers();
+    .AddControllers(options =>
+    {
+        //options.Filters.Add(typeof(TrackActionPerformanceFilter));
+    });
 
 builder.Services
     .AddDatabase(builder.Configuration)
     .ConfigureServices()
     .ConfigureSwagger(builder.Configuration);
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -23,7 +26,7 @@ var app = builder.Build();
 using(var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<BookClubDbContext>();
-    dbContext?.Database?.Migrate();
+    dbContext.Database.Migrate();
     DatabaseExtension.SeedDatabase(dbContext);
 }
 // Configure the HTTP request pipeline.
@@ -42,6 +45,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHsts();
 
+app.UseApiExceptionHandler(options => options.AddResponseDetails = UpdateApiErrorResponse);
 app.UseHttpsRedirection();
 
 //app.UseAuthorization();
@@ -49,3 +53,12 @@ app.UseHttpsRedirection();
 app.MapControllers();
 
 app.Run();
+
+
+void UpdateApiErrorResponse(HttpContext httpContext, Exception exception, ApiError apiError)
+{
+    if (exception.GetType().Name == nameof(Exception))
+    {
+        apiError.Link = "NO link, database shit";
+    }
+}

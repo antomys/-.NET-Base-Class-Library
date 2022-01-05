@@ -6,9 +6,11 @@ namespace BookClub.UI;
 public class StandardHttpMessageHandler : DelegatingHandler
 {
     private readonly HttpContext _httpContext;
-    public StandardHttpMessageHandler(HttpContext httpContext)
+    private readonly ILogger _logger;
+    public StandardHttpMessageHandler(HttpContext httpContext, ILogger logger)
     {
         _httpContext = httpContext;
+        _logger = logger;
         InnerHandler = new SocketsHttpHandler();
     }
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -41,9 +43,12 @@ public class StandardHttpMessageHandler : DelegatingHandler
                 ex.Data.Add("API Error", error);
                 ex.Data.Add("API ErrorId", id);
             }
+
+            _logger.LogInformation("Api Error: {Exception}, Route :{Route}",
+                ex, request.RequestUri);
+            
             throw ex;
         }
-
         return response;
     }
 }
