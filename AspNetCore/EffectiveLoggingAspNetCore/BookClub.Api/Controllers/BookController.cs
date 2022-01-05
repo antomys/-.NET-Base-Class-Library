@@ -1,26 +1,32 @@
 using BookClub.Dal;
-using BookClub.Infrastructure.Attributes;
+using BookClub.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookClub.Api.Controllers;
 
-[TypeFilter(typeof(TrackPerformance))]
 [Route("api/[controller]")]
 [ApiController]
 public class BookController : ControllerBase
 {
     private readonly IBookService _bookRepo;
+    private readonly ILogger<BookController> _logger;
+    private readonly IScoreInformation _information;
 
-    public BookController(IBookService bookRepo)
+    public BookController(IBookService bookRepo, IScoreInformation information, ILogger<BookController> logger)
     {
         _bookRepo = bookRepo;
+        _information = information;
+        _logger = logger;
     }
 
     [HttpGet]
     public IEnumerable<Book> GetBooks()
     {
-        //throw new InvalidDataException("Some exceptions for you");
+        //using (_logger.BeginScope(_information.HostScopeInfo))
+        //{
         return _bookRepo.GetAllBooks();
+        //}
+        //throw new InvalidDataException("Some exceptions for you");
         //return _bookRepo.GetAllBooksThrowError();
     }
 

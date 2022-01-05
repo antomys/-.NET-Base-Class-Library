@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddControllers(options =>
     {
-        //options.Filters.Add(typeof(TrackActionPerformanceFilter));
+        options.Filters.Add(typeof(TrackActionPerformanceFilter));
     });
 
 builder.Services
@@ -45,7 +45,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHsts();
 
-app.UseApiExceptionHandler(options => options.AddResponseDetails = UpdateApiErrorResponse);
+app.UseApiExceptionHandler(options =>
+{
+    options.AddResponseDetails = UpdateApiErrorResponse;
+    options.DetermineLogLevel = DetermineLogLevel;
+});
 app.UseHttpsRedirection();
 
 //app.UseAuthorization();
@@ -61,4 +65,9 @@ void UpdateApiErrorResponse(HttpContext httpContext, Exception exception, ApiErr
     {
         apiError.Link = "NO link, database shit";
     }
+}
+
+LogLevel DetermineLogLevel(Exception exception)
+{
+    return LogLevel.Critical;
 }

@@ -40,12 +40,14 @@ public class ApiExceptionMiddleware
             Code = StatusCodes.Status500InternalServerError.ToString(),
             Link = httpContext.TraceIdentifier
         };
-
+        
         exceptionOptions.AddResponseDetails.Invoke(httpContext, exception, error);
 
         var innedExceptionMessage = GetInnerExceptionMessage(exception);
+
+        var level = exceptionOptions.DetermineLogLevel?.Invoke(exception) ?? LogLevel.Error;
         
-        _logger.LogError(exception, "Error occured, middleware {InnerExceptionMessage}. Error Id : {ErrorId}",innedExceptionMessage,error.Id);
+        _logger.Log(level, exception, "Error occured, middleware {InnerExceptionMessage}. Error Id : {ErrorId}",innedExceptionMessage,error.Id);
         
         httpContext.Request.ContentType = MediaTypeNames.Application.Json;
         httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;

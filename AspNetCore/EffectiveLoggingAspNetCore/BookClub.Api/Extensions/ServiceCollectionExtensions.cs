@@ -1,4 +1,5 @@
 using BookClub.Dal;
+using BookClub.Infrastructure;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -13,7 +14,8 @@ public static class ServiceCollectionExtensions
         {
             throw new ArgumentNullException(nameof(serviceCollection));
         }
-        
+
+        serviceCollection.AddSingleton<IScoreInformation, ScopeInformation>();
         serviceCollection.AddTransient<IBookService, BookService>();
 
         serviceCollection.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerConfig>();
