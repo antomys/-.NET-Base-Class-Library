@@ -2,13 +2,13 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <RootNamespace>Reading_and_Writing_CSV_Data</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="CsvHelper" Version="27.0.2" />
-      <PackageReference Include="System.Runtime.Caching" Version="5.0.0" />
+      <PackageReference Include="CsvHelper" Version="27.2.1" />
+      <PackageReference Include="System.Runtime.Caching" Version="6.0.0" />
     </ItemGroup>
 
 </Project>
