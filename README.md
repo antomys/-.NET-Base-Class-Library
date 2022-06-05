@@ -19,6 +19,7 @@ Contains several "skills":
 
 Other courses:
 
-| Course name | Link to course | Progress | 
-| ----------- | -------------- |----------|
-| Working with nulls | https://app.pluralsight.com/library/courses/c014dd5d-9798-4758-9e4e-52112e5db090/table-of-contents| In progress |
+| Course name | Link to course | Progress  | 
+| ----------- | -------------- |-----------|
+| Working with nulls | https://app.pluralsight.com/library/courses/c014dd5d-9798-4758-9e4e-52112e5db090/table-of-contents| Completed |
+| C# 10 Performance Playbook | https://app.pluralsight.com/library/courses/c-sharp-10-performance-playbook/table-of-contents| Completed |

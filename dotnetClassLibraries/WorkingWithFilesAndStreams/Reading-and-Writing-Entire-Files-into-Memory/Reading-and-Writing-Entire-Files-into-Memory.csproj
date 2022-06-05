@@ -2,12 +2,12 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <RootNamespace>Reading_and_Writing_Entire_Files_into_Memory</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="System.Runtime.Caching" Version="6.0.0-preview.3.21201.4" />
+      <PackageReference Include="System.Runtime.Caching" Version="6.0.0" />
     </ItemGroup>
 
 </Project>

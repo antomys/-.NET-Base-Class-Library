@@ -30,7 +30,7 @@ namespace DataProcessor.Tests
 
             var processedFile = mockFs.GetFile(@"c:\root\out\myFile.txt");
 
-            var lines = processedFile.TextContents.SplitLines();
+            var lines = processedFile.TextContents.Split('\n');
             
             Assert.Equal("Line1".ToUpper(),lines[0]);
         }
