@@ -2,6 +2,6 @@
 
 public sealed class PersonClassSealed
 {
-    public string name;
-    public string Name { get; set; }
+    public string name = null!;
+    public string Name { get; set; } = null!;
 }

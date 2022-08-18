@@ -17,7 +17,7 @@ namespace BookClub.UI.Pages
         {
             _logger.LogInformation("About to call API to get book list");
             using var http = new HttpClient(new StandardHttpMessageHandler(HttpContext, _logger));
-            Books = await http.GetFromJsonAsync<List<Book>>("http://localhost:5000/api/Book")!;
+            Books = (await http.GetFromJsonAsync<List<Book>>("http://localhost:5000/api/Book"))!;
         }
     }
 }
