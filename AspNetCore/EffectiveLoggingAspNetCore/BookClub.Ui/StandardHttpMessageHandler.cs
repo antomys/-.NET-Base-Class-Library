@@ -29,9 +29,9 @@ public class StandardHttpMessageHandler : DelegatingHandler
 
             if (response.Content.Headers.ContentLength > 0)
             {
-                var j = JObject.Parse(await response.Content.ReadAsStringAsync());
-                error = (string)j["Title"];
-                id = (string)j["Id"];
+                var j = JObject.Parse(await response.Content.ReadAsStringAsync(cancellationToken));
+                error = (string)j["Title"]!;
+                id = (string)j["Id"]!;
             }
 
             var ex = new Exception("API Failure");

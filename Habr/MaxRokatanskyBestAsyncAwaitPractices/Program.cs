@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var asyncAwait = new AsyncAwait();
-        asyncAwait.AsyncAwaitExample();
+        await asyncAwait.AsyncAwaitExample();
     }
 }
 public class AsyncAwait
